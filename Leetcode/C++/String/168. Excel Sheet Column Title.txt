@@ -1,0 +1,22 @@
+class Solution {
+public:
+    string convertToTitle(int a) {
+        string b;
+        
+        char tmp;
+        
+        while(a){
+            
+            a--;
+            
+            tmp= 'A' + a%26;
+            
+            b = tmp + b;
+            
+            a/=26;
+        }
+        
+        return b;       
+        
+    }
+};

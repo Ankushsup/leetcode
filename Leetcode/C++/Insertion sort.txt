@@ -1,0 +1,29 @@
+#insertion sort algorithm
+
+#include<iostream>
+using namespace std;
+int main(){
+    int a,j;
+    cout<<"enter the number";
+    cin>>a;
+    int b[a];
+    cout<<"enter the value of array";
+    for(int i=0;i<a;i++){
+        cin>>b[i];
+    }
+    
+    for(int i=1;i<a;i++){
+        int current=b[i];
+        j=i-1;
+        while(b[j]>current && j>=0){
+            b[j+1]=b[j];
+            j--;
+        }
+        b[j+1]=current;
+    }
+    cout<<"the sorted numbers are :\n";
+    for(int i=0;i<a;i++){
+        cout<<b[i]<<endl;
+    }
+    return 0;
+}

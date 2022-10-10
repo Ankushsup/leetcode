@@ -1,0 +1,49 @@
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        vector<int> a;
+        int c=nums.size();
+        for(int i=0;i<c;i++){
+            int sum=i;
+            for(int j=i+1;j<c;j++){
+                sum=nums[i]+nums[j];
+                if(sum==target)
+                {
+                    a.push_back(i);
+                    a.push_back(j);
+                    return a;
+                }  
+                sum=sum-nums[j];
+        }
+        }
+        
+        return a;
+        
+    }
+};
+
+
+
+//optimize using hash
+// number finding method using hashing pattern
+
+class Solution {
+public:
+    
+    vector<int> twoSum(vector<int>& numbers, int target)
+    {
+	unordered_map<int, int> hash; //Number, Index
+        
+	for (int i = 0; i < numbers.size(); i++) 
+        {
+		int numberToFind = target - numbers[i];
+
+		if (hash.find(numberToFind) != hash.end()) 
+			return  {hash[numberToFind] ,i };
+
+		hash[numbers[i]] = i;
+	}
+	return {};
+    }
+};
+

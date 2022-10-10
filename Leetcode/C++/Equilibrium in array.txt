@@ -1,0 +1,81 @@
+#include <bits/stdc++.h>
+#include <iostream>
+using namespace std;
+
+int findElement(int arr[], int n)
+{
+ for (int i = 1; i < n; i++) {
+  int leftSum = 0;
+  for (int j = i - 1; j >= 0; j--) {
+   leftSum += arr[j];
+  }
+
+  int rightSum = 0;
+  for (int k = i + 1; k < n; k++) {
+   rightSum += arr[k];
+  }
+
+  if (leftSum == rightSum) {
+   return i+1;
+  }
+ }
+
+ return -1;
+}
+
+int main()
+{
+ // Case 1
+ int arr1[] = { 1, 4, 2, 5 };
+ int n1 = sizeof(arr1) / sizeof(arr1[0]);
+ cout << findElement(arr1, n1) << "\n";
+
+ // Case 2
+ int arr2[] = { 2, 3, 4, 1, 4, 5 };
+ int n2 = sizeof(arr2) / sizeof(arr2[0]);
+ cout << findElement(arr2, n2);
+ return 0;
+}
+
+
+Own solved
+
+#include <bits/stdc++.h>
+#include <iostream>
+using namespace std;
+
+int findElement(int arr[], int n)
+{
+ for (int i = 1; i < n; i++) {
+  int leftSum = 0;
+  for (int j = i - 1; j >= 0; j--) {
+   leftSum += arr[j];
+  }
+
+  int rightSum = 0;
+  for (int k = i + 1; k < n; k++) {
+   rightSum += arr[k];
+  }
+
+  if (leftSum == rightSum) {
+   return i+1;
+  }
+ }
+
+ return -1;
+}
+
+int main()
+{
+ // Case 1
+ int arr1[] = { 1, 4, 2, 5 };
+ int n1 = sizeof(arr1) / sizeof(arr1[0]);
+ cout << findElement(arr1, n1) << "\n";
+
+ // Case 2
+ int arr2[] = { 2, 3, 4, 1, 4, 5 };
+ int n2 = sizeof(arr2) / sizeof(arr2[0]);
+ cout << findElement(arr2, n2);
+ return 0;
+}
+// This code contributed by Bhanu Teja Kodali

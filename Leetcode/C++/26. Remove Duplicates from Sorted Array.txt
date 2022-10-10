@@ -1,0 +1,36 @@
+1. method
+
+class Solution {
+public:
+    int removeDuplicates(vector<int>& nums) {
+        int b=nums.size(),k=0;
+        
+        for(int i=1;i<b;i++)
+        {
+            if(nums[k]!=nums[i])
+            {
+                k++;
+            }
+            nums[k]=nums[i];
+        }
+        
+        return k+1;        
+        
+    }
+};
+
+
+#second method
+
+
+class Solution {
+public:
+    int removeDuplicates(vector<int>& nums) {
+        int n = nums.size(), removed = 0;
+        for (int i = 1; i < n; i++) {
+            if (nums[i] == nums[i - 1]) removed++;
+            else nums[i - removed] = nums[i];
+        }
+        return n - removed;
+    }
+};
