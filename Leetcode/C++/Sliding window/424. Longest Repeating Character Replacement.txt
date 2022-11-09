@@ -1,0 +1,23 @@
+class Solution {
+public:
+    int characterReplacement(string s, int k) {
+        int right=0, left=0 , maxl=0;
+        int a[26]={0};
+
+        while(right<s.length())
+        {
+            a[s[right]-'A']++;
+            maxl= max(maxl , a[s[right]-'A']);
+            right++;
+
+            if(right-left-maxl>k)
+            {
+                a[s[left]-'A']--;
+                left++;
+            }
+        }
+
+        return right-left;
+
+    }
+};

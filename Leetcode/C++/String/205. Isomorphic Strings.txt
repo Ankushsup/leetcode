@@ -25,6 +25,7 @@ Second type
 class Solution {
 public:
     bool isIsomorphic(string s, string t) {
+
         int s1[256]={0}, t1[256]={0}, n=s.length();
         
         int i = 0;

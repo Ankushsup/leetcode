@@ -1,0 +1,85 @@
+class Solution {
+public:
+    long long maximumSubarraySum(vector<int>& nums, int k) {
+        long long res = 0ll;
+        unordered_map<int, int> num_cnts;
+        int left = 0;
+        long long total = 0ll;
+        for (int right = 0; right < nums.size(); ++right) {
+            total += nums[right];
+            ++num_cnts[nums[right]];
+            if (right - left == k) {
+                total -= nums[left];
+                if (--num_cnts[nums[left]] == 0)
+                    num_cnts.erase(nums[left]);
+                ++left;
+            }
+            if (num_cnts.size() == k)
+                res = max(res, total);            
+        }
+        return res;
+    }
+};
+
+
+second solution
+
+class Solution {
+public:
+    long long maximumSubarraySum(vector<int>& nums, int k) {
+        unordered_map<int ,int> m;
+        long long ans = 0, s = 0, i = 0;
+        
+        for(int j=0; j<nums.size(); j++) {
+            m[nums[j]]++;
+            s += nums[j];
+            if(k == j - i + 1) {
+                if(m.size() == k) ans = max(ans, s);
+                s -= nums[i];
+                m[nums[i]]--;
+                if(!m[nums[i]]) m.erase(nums[i]);
+                i++;
+            }
+        }
+        return ans;
+    }
+};
+
+third
+
+class Solution {
+public:
+    long long maximumSubarraySum(vector<int>& nums, int k) {
+        int n = nums.size();
+        int mx = *(max_element(nums.begin(), nums.end()));
+        vector<int> count(mx + 1);
+        int dupCount = 0;
+        int64_t sum = 0;
+        int len = 0;
+        int64_t ret = 0;
+        for (int i = 0; i < n; ++i) {
+            int num = nums[i];
+            sum += num;
+            count[num] += 1;
+            if (count[num] == 2) {
+                dupCount += 1;
+            }
+            len += 1;
+            
+            if (len == k + 1) {
+                int oldNum = nums[i - k];
+                sum -= oldNum;
+                count[oldNum] -= 1;
+                if (count[oldNum] == 1) {
+                    dupCount -= 1;
+                }
+                len -= 1;
+            }
+            
+            if (len == k && dupCount == 0) {
+                ret = max(ret, sum);
+            }
+        }
+        return ret;
+    }
+};

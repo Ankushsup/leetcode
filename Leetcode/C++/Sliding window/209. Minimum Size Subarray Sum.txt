@@ -1,0 +1,58 @@
+class Solution {
+public:
+    int minSubArrayLen(int target, vector<int>& nums) {
+        int l = 0, k = 0, r=nums.size();
+        int sum = 0 ,ans= INT_MAX;
+        //         int l = 0, r = 0, n = nums.size(), sum = 0, len = INT_MAX;
+
+
+        while(l<r)
+        {
+            sum += nums[l++];
+            while(sum>=target)
+            {
+                ans= min(ans,l-k);
+                sum -= nums[k++];
+            }
+        }
+        return ans == INT_MAX ? 0 : ans;
+    }
+};
+
+second solution
+
+class Solution {
+public:
+        int minSubArrayLen(int s, vector<int>& A) {
+        int i = 0, n = A.size(), res = n + 1;
+        for (int j = 0; j < n; ++j) {
+            s -= A[j];
+            while (s <= 0) {
+                res = min(res, j - i + 1);
+                s += A[i++];
+            }
+        }
+        return res % (n + 1);
+    }
+};
+
+third 
+
+class Solution {
+public:
+    int minSubArrayLen(int target, vector<int>& nums) {
+        ios_base::sync_with_stdio(false);
+        cin.tie(NULL);
+        int start = 0, end = 0, currentSum = 0, minLength = INT_MAX;
+        while (end < nums.size()) {
+            currentSum = currentSum + nums[end];
+            ++end;
+            while(start < end && currentSum >= target) {
+                currentSum -= nums[start];
+                    ++start;
+                    minLength = min(minLength, end - start + 1);
+            }
+        }
+        return minLength < INT_MAX ? minLength : 0;
+    }
+};

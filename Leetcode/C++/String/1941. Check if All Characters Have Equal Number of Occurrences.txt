@@ -1,0 +1,34 @@
+class Solution {
+public:
+    bool areOccurrencesEqual(string s) 
+    {
+        int k=s.length();
+        
+        int a[26] = {0};
+        
+        for(int i=0;i<s.length();i++)
+        {
+            int idx =s[i]-'a';
+            a[idx]++;
+        }
+        
+        int d=a[s[0]-'a'];
+        
+        
+        
+        for(int i=0;i<26;i++)
+        {
+            if(a[i]!=0)
+            {
+                if(a[i]!=d)
+                {
+                    return false;
+                }
+            }
+            
+        }
+        return true;      
+        
+        
+    }
+};

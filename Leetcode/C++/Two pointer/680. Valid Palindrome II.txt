@@ -1,0 +1,81 @@
+class Solution {
+public:
+    bool validPalindrome(string s) {
+        int start=0;
+        int end=s.length()-1;
+        int count1=0;
+        while(start<=end)
+        {
+            if(s[start]==s[end])
+            {
+                start++;
+                end--;
+            }
+            else 
+            {
+                count1++;
+                end--;
+            }
+        }
+        start=0;
+        end=s.length()-1;
+        int count2=0;
+        while(start<=end)
+        {
+            if(s[start]==s[end])
+            {
+                start++;
+                end--;
+            }
+            else 
+            {
+                count2++;
+                start++;
+            }
+        }
+        if(count1<=1 || count2<=1)
+        {
+            return true;
+        }
+        return false;
+    }
+};
+
+
+
+second solution
+//faster
+
+class Solution {
+public:
+    bool validPalindrome(string s) {
+        int lo = 0, hi = s.size() - 1;
+        return validPalindrome(s, lo, hi, 0);
+    }
+    
+    bool validPalindrome(string& s, int lo, int hi, int count) {
+        if (count > 1) return false;
+        while (lo < hi) {
+            if (s[lo] == s[hi]) {
+                lo++; hi--;
+            } else {
+                return validPalindrome(s, lo + 1, hi, count + 1) || 
+                        validPalindrome(s, lo, hi - 1, count + 1);
+            }
+        }
+        return true;
+    }
+};
+
+third solution
+
+    bool validPalindrome(string s) {
+        for (int i = 0, j = s.size() - 1; i < j; i++, j--)
+            if (s[i] != s[j]) {
+                int i1 = i, j1 = j - 1, i2 = i + 1, j2 = j;
+                while (i1 < j1 && s[i1] == s[j1]) {i1++; j1--;};
+                while (i2 < j2 && s[i2] == s[j2]) {i2++; j2--;};
+                return i1 >= j1 || i2 >= j2;
+            }
+        return true;
+    }

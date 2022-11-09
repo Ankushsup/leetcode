@@ -1,0 +1,81 @@
+slide the window on subarray
+
+first
+
+class Solution {
+public:
+    int longestOnes(vector<int>& nums, int k) {
+
+        int i=0,j=0,n=nums.size(), countZero=0,ans=INT_MIN;
+
+        while(j<n)
+        {
+            if(nums[j]==0)
+            {
+                countZero++;
+            }
+            while(countZero>k)
+            {
+                if(nums[i] ==0)
+                {
+                    countZero--;
+                }
+                i++;
+            }
+            ans=max(ans,j-i+1);
+            j++;
+        }
+        return ans;
+        
+    }
+};
+
+
+second solution
+
+class Solution {
+public:
+    int longestOnes(vector<int>& nums, int k)
+    {
+        int l = 0;
+        int r = 0;
+        int num_zeros = 0;
+        int result = 0;
+        
+        for (r = 0; r < nums.size(); r++)
+        {
+            if (nums[r] == 0)
+            {
+                ++num_zeros;
+            }
+
+            if (num_zeros > k)
+            {
+                if (nums[l] == 0)
+                {
+                    --num_zeros;
+                }
+                ++l;
+            }
+
+            // if valid candidate
+            if (num_zeros <= k)
+            {
+                result = max(result, r-l+1);
+            }
+        }
+        
+        return result;
+    }
+};
+
+
+third
+    int longestOnes(vector<int>& A, int K) {
+        int i = 0, j;
+        for (j = 0; j < A.size(); ++j) {
+            if (A[j] == 0) K--;
+            if (K < 0 && A[i++] == 0) K++;
+        }
+        return j - i;
+    }
